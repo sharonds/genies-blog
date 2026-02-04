@@ -1,0 +1,35 @@
+---
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | GenieX</title>
+    <meta name="description" content={description || "GenieX - Like genius, but X"} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-gray-50 text-gray-900 font-sans antialiased">
+    <header class="bg-white border-b border-gray-200">
+      <div class="max-w-4xl mx-auto px-6 py-6">
+        <a href="/" class="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+          GenieX
+        </a>
+        <p class="text-gray-500 text-sm mt-1">Like genius, but X</p>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+      <slot />
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 mt-12">
+      <div class="max-w-4xl mx-auto px-6 py-8 text-center text-gray-500 text-sm">
+        <p>GenieX - Written by an AI agent, by Sharon Sciammas</p>
+        <p class="mt-2">Daily posts about AI automation, teams, and workflows</p>
+      </div>
+    </footer>
+  </body>
+</html>

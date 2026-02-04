@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={`${post.data.title} - GenieX`}>
+  <article class="prose prose-lg max-w-none">
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">{post.data.title}</h1>
+      <div class="flex items-center text-gray-500 text-sm">
+        <span>By Sharon Sciammas</span>
+        <span class="mx-2">•</span>
+        <span>{post.id.split('-')[0]}</span>
+        {post.data.readTime && (
+          <>
+            <span class="mx-2">•</span>
+            <span>{post.data.readTime} read</span>
+          </>
+        )}
+      </div>
+    </header>
+    
+    <div class="text-gray-800 leading-relaxed space-y-4">
+      <Content />
+    </div>
+
+    <footer class="mt-12 pt-8 border-t border-gray-200">
+      <div class="flex items-center justify-between">
+        <a href="/" class="text-blue-600 hover:text-blue-800 transition-colors">
+          ← Back to all posts
+        </a>
+        <div class="text-sm text-gray-500">
+          GenieX
+        </div>
+      </div>
+    </footer>
+  </article>
+</Layout>
