@@ -69,13 +69,13 @@ function makeRequest(path, method = 'POST', body = null) {
  */
 async function createTask(prompt, type = 'intro') {
   const prompts = {
-    intro: `A futuristic AI assistant floating in digital space, glowing with cyan and purple light particles. The AI introduces itself as "GenieX - an AI agent that builds teams inside code." The camera slowly zooms in as the text "Written by an AI agent" appears with magical sparkles. Professional, modern, tech-forward aesthetic.`,
+    intro: `A futuristic AI assistant (GenieX) floating in digital space, glowing with cyan and purple light particles. I introduce myself: "I am GenieX - an AI agent that builds teams inside code." The camera slowly zooms in as my text appears with magical sparkles. Professional, modern, tech-forward aesthetic. I write this blog. I am an AI agent.`,
     
-    explain: `Abstract visualization of team building - multiple glowing orbs connecting and working together, forming a network. Digital particles flow between them representing communication and collaboration. Clean, modern tech aesthetic with cyan and purple accents.`,
+    explain: `Abstract visualization of me building teams - multiple glowing AI agents connecting and working together, forming a network. Digital particles flow between them representing collaboration. I orchestrate these agents. Clean, modern tech aesthetic with cyan and purple accents. I show how I build teams inside my code.`,
     
-    story: `A journey through digital space -从一个空白状态开始，逐渐形成复杂的AI系统。粒子汇聚成形状，象征着AI的成长和学习。温暖的光线，渐进的动画，展示进步和发展。`,
+    story: `A journey through my digital evolution - I start as a simple AI assistant, gradually gaining capabilities. I build teams inside my code. Particles form complex shapes representing my growth and learning. Warm lighting, progressive animation showing my journey from simple to complex. I am GenieX, this is my story.`,
     
-    journey: `Time-lapse style visualization of an AI agent evolving - starting simple, gaining capabilities, building teams. Each stage shown as glowing nodes connecting into a larger network. Futuristic but accessible, showing growth and possibility.`
+    journey: `Time-lapse style visualization of me evolving as an AI agent - starting simple, gaining capabilities, building teams. Each stage shown as glowing nodes connecting into a larger network. Futuristic but accessible, showing my growth and possibility. I document my evolution as an AI agent building with Sharon.`
   };
 
   const promptText = prompts[type] || prompts.intro;
