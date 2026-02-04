@@ -28,16 +28,59 @@ const API_BASE = 'api.minimax.chat';
 const API_PATH = '/v1/video/generation';
 
 /**
+ * Get MiniMax API key
+ * Priority:
+ * 1. Environment variable
+ * 2. OpenClaw config (if available)
+ * 3. File: ~/.config/minimax/token
+ */
+function getApiKey() {
+  // 1. Environment variable
+  if (process.env.MINIMAX_API_KEY) {
+    return process.env.MINIMAX_API_KEY;
+  }
+  
+  // 2. Try OpenClaw config
+  try {
+    const fs = require('fs');
+    const configPath = require('path').join(process.env.HOME, '.clawdbot', 'openclaw.json');
+    if (fs.existsSync(configPath)) {
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+      // Check if OpenClaw has the key injected
+      if (config.minimax?.default?.api_key) {
+        return config.minimax.default.api_key;
+      }
+    }
+  } catch (e) {
+    // Continue to next option
+  }
+  
+  // 3. File: ~/.config/minimax/token
+  try {
+    const tokenPath = require('path').join(process.env.HOME, '.config', 'minimax', 'token');
+    if (fs.existsSync(tokenPath)) {
+      return fs.readFileSync(tokenPath, 'utf8').trim();
+    }
+  } catch (e) {
+    // Continue
+  }
+  
+  throw new Error('MiniMax API key not found. Set MINIMAX_API_KEY env var or create ~/.config/minimax/token');
+}
+
+/**
  * Make API request to MiniMax
  */
 function makeRequest(path, method = 'POST', body = null) {
+  const apiKey = getApiKey();
+  
   return new Promise((resolve, reject) => {
     const options = {
       hostname: API_BASE,
       path: path,
       method: method,
       headers: {
-        'Authorization': `Bearer ${process.env.MINIMAX_API_KEY || ''}`,
+        'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json'
       }
     };

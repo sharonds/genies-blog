@@ -4,10 +4,24 @@ Generates videos using MiniMax API to introduce GenieX.
 
 ## Setup
 
-1. Get MiniMax API key
-2. Set environment variable:
+### API Key Location
+
+The MiniMax API key is read from (in priority order):
+
+1. **Environment variable** (recommended for production):
    ```bash
-   export MINIMAX_API_KEY='your-api-key'
+   export MINIMAX_API_KEY='your-api-key-here'
+   ```
+
+2. **OpenClaw config** (if using OpenClaw):
+   - Key is injected by OpenClaw at: `~/.clawdbot/openclaw.json`
+   - Mode: `api_key`
+
+3. **File** (for local development):
+   ```bash
+   mkdir -p ~/.config/minimax
+   echo 'your-api-key-here' > ~/.config/minimax/token
+   chmod 600 ~/.config/minimax/token
    ```
 
 ## Usage
