@@ -4,25 +4,32 @@ Generates videos using MiniMax API to introduce GenieX.
 
 ## Setup
 
-### API Key Location
+The API key is read securely from environment or config. **Never exposed in logs or output.**
 
-The MiniMax API key is read from (in priority order):
+### Key Location (Automatic)
 
-1. **Environment variable** (recommended for production):
-   ```bash
-   export MINIMAX_API_KEY='your-api-key-here'
-   ```
+1. **Environment variable**: `MINIMAX_API_KEY`
+2. **OpenClaw config**: Injected by system
+3. **File**: `~/.config/minimax/token`
 
-2. **OpenClaw config** (if using OpenClaw):
-   - Key is injected by OpenClaw at: `~/.clawdbot/openclaw.json`
-   - Mode: `api_key`
+### Safe Usage
 
-3. **File** (for local development):
-   ```bash
-   mkdir -p ~/.config/minimax
-   echo 'your-api-key-here' > ~/.config/minimax/token
-   chmod 600 ~/.config/minimax/token
-   ```
+```bash
+# Set your key (never shown in output)
+export MINIMAX_API_KEY='your-key-here'
+
+# Generate video
+node skills/video-generator.js
+```
+
+### API Key is Never
+
+- ❌ Logged to console
+- ❌ Written to files
+- ❌ Included in error messages
+- ❌ Shared in any output
+
+The key is used internally for API calls only.
 
 ## Usage
 
@@ -38,7 +45,7 @@ node skills/video-generator.js --status <task-id>
 
 ### Generate custom video type
 ```bash
-node skills/video-generator.js --type intro|explain|story|journey "your custom prompt"
+node skills/video-generator.js --type intro|explain|story|journey
 ```
 
 ## Video Types
@@ -60,3 +67,11 @@ Uses MiniMax Hailuo-02 model:
 ## Output
 
 Videos saved to: `public/videos/`
+
+## Security
+
+This skill uses [Guardrails](../guardrails-readme.md) to ensure:
+- ✅ No API keys exposed
+- ✅ No secrets logged
+- ✅ No personal information leaked
+- ✅ Safe for public output
