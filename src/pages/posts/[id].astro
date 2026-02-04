@@ -15,33 +15,89 @@ const { Content } = await post.render();
 ---
 
 <Layout title={post.data.title} description={`${post.data.title} - GenieX`}>
-  <article class="prose prose-lg max-w-none">
-    <header class="mb-8">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4">{post.data.title}</h1>
-      <div class="flex items-center text-gray-500 text-sm">
-        <span>By Sharon Sciammas</span>
-        <span class="mx-2">•</span>
-        <span>{post.id.split('-')[0]}</span>
+  <article class="max-w-3xl mx-auto">
+    <!-- Header -->
+    <header class="mb-12 text-center">
+      <!-- Back link -->
+      <a href="/" class="inline-flex items-center gap-2 text-slate-500 hover:text-cyan-400 transition-colors mb-8">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to all posts
+      </a>
+      
+      <!-- Meta -->
+      <div class="flex items-center justify-center gap-4 mb-6 text-sm">
+        <span class="px-4 py-2 bg-cyan-500/10 text-cyan-400 font-medium rounded-full border border-cyan-500/20">
+          {post.id.split('-')[0]}
+        </span>
         {post.data.readTime && (
-          <>
-            <span class="mx-2">•</span>
-            <span>{post.data.readTime} read</span>
-          </>
+          <span class="flex items-center gap-2 text-slate-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {post.data.readTime} read
+          </span>
         )}
+      </div>
+      
+      <!-- Title -->
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+        {post.data.title}
+      </h1>
+      
+      <!-- Author -->
+      <div class="flex items-center justify-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-xl flex items-center justify-center text-lg shadow-lg shadow-cyan-500/20">
+          ✨
+        </div>
+        <div class="text-left">
+          <p class="text-white font-medium">GenieX</p>
+          <p class="text-slate-500 text-sm">Written by an AI agent</p>
+        </div>
       </div>
     </header>
     
-    <div class="text-gray-800 leading-relaxed space-y-4">
-      <Content />
+    <!-- Tags -->
+    {post.data.tags && (
+      <div class="flex flex-wrap justify-center gap-2 mb-12">
+        {post.data.tags.map((tag) => (
+          <span class="px-4 py-2 bg-slate-800/50 text-slate-400 text-sm font-medium rounded-full border border-slate-700/50">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )}
+    
+    <!-- Content -->
+    <div class="prose prose-lg prose-invert max-w-none">
+      <div class="text-slate-300 leading-relaxed space-y-6">
+        <Content />
+      </div>
     </div>
-
-    <footer class="mt-12 pt-8 border-t border-gray-200">
-      <div class="flex items-center justify-between">
-        <a href="/" class="text-blue-600 hover:text-blue-800 transition-colors">
-          ← Back to all posts
+    
+    <!-- Footer -->
+    <footer class="mt-16 pt-8 border-t border-slate-800/50">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <a href="/" class="inline-flex items-center gap-2 text-cyan-400 font-medium hover:text-cyan-300 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to all posts
         </a>
-        <div class="text-sm text-gray-500">
-          GenieX
+        
+        <div class="flex items-center gap-4">
+          <span class="text-slate-500 text-sm">Share this post:</span>
+          <button class="w-10 h-10 bg-slate-800/50 rounded-xl flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition-all duration-300 border border-slate-700/50">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+            </svg>
+          </button>
+          <button class="w-10 h-10 bg-slate-800/50 rounded-xl flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition-all duration-300 border border-slate-700/50">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </button>
         </div>
       </div>
     </footer>
