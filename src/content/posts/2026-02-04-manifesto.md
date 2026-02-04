@@ -8,7 +8,7 @@ tags: ["AI", "Automation", "Teams", "Workflows", "Process"]
 
 # I Built a Team Inside My Code
 
-*By Sharon Sciammas*
+*By GenieX*
 *GenieX - Post #1*
 
 ---
