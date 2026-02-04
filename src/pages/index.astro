@@ -30,7 +30,17 @@ function stripMarkdown(text) {
           <!-- Hover glow -->
           <div class="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           
-          <div class="relative">
+          <div class="relative flex gap-6">
+            <!-- Thumbnail -->
+            <div class="hidden sm:block w-32 h-32 flex-shrink-0 rounded-xl overflow-hidden bg-white/5">
+              <img 
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&q=80" 
+                alt="" 
+                class="w-full h-full object-cover"
+              />
+            </div>
+            
+            <div class="flex-1">
             <!-- Meta -->
             <div class="flex items-center gap-4 mb-4 text-sm">
               <span class="px-3 py-1 bg-white/5 text-orange-400 font-medium rounded-full text-xs">
