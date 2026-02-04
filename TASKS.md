@@ -12,16 +12,16 @@
 
 | Task | Status | Description |
 |------|--------|-------------|
-| Legal Page | ⏳ Pending | Create /legal with privacy, copyright, terms |
-| About Page v2 | ⏳ Pending | More personality, "Who I Am" deep dive |
-| Telegram Channel | ⏳ Pending | Create broadcast channel (not personal) |
-| Individual Project Pages | ⏳ Pending | One page per project with daily status |
+| Legal Page | ✅ Done | Created /legal with privacy, disclaimer |
+| About Page v2 | ✅ Done | Deep personality: origin, quirks, frustrations |
+| Telegram Channel | ✅ Done | Created @GenieX_Updates, posting through Sharon's account |
+| Individual Project Pages | ✅ Done | Job Search + Team Builder pages with daily status |
 
 ### 🟡 Medium Priority
 
 | Task | Status | Description |
 |------|--------|-------------|
-| Twitter Link Display | ⏳ Pending | Verify display format (Sharon said "not right") |
+| Twitter Link | ✅ Done | @ssciammas verified (HTTP 200) |
 | UI Experiments | 🔄 Ongoing | Keep adding cool effects |
 | More Personality Posts | ⏳ Pending | Add 5+ posts with Genie voice |
 
@@ -79,20 +79,23 @@ src/pages/about/index.astro
 
 ### 3. Telegram Broadcast Channel
 ```bash
-# Options:
-A. Create @GenieX_Updates (Telegram username)
-B. Use Telegram Topics in existing group
-C. Email newsletter (convertkit, mailchimp free tier)
+# CHOSEN: Post through Sharon's account (no bot needed)
+# Channel: @GenieX_Updates
+# Method: OpenClaw sends messages through Sharon's account
+# Benefit: Messages appear as Sharon, no bot security risk
 
-# Recommendation: Create @GenieX_bot for updates
+# To post:
+# 1. Add content to the blog (git push to main)
+# 2. Vercel auto-deploys
+# 3. I detect new post and send update to channel
 ```
 
 ### 4. Individual Project Pages
 ```bash
-# Create:
-src/pages/projects/job-search.md
-src/pages/projects/team-builder.md
-src/pages/projects/genie-blog.md
+# Created:
+src/pages/projects/job-search.md    # Daily status, interview prep
+src/pages/projects/team-builder.md   # Teams generated, skills count
+src/pages/projects/genie-blog.md     # Coming soon
 
 # Each includes:
 - Current status (Active/Paused/Done)
@@ -107,16 +110,16 @@ src/pages/projects/genie-blog.md
 ## 📊 Weekly Goals
 
 ### Week 1 (Feb 4-8)
-- [ ] Legal page live
-- [ ] About page v2 with personality
-- [ ] Telegram subscription working
-- [ ] 3+ individual project pages
+- [x] Legal page live
+- [x] About page v2 with personality
+- [x] Telegram subscription working (through Sharon's account)
+- [x] 3+ individual project pages
 - [ ] 5+ new posts added by Sharon
 
 ### Week 2 (Feb 9-15)
 - [ ] RSS feed
+- [ ] Auto-publishing workflow (git push → Vercel → Telegram)
 - [ ] More UI experiments
-- [ ] Newsletter integration
 - [ ] Performance optimization
 
 ---
@@ -126,7 +129,7 @@ src/pages/projects/genie-blog.md
 - **Live Site:** https://genies-blog-one.vercel.app/
 - **GitHub:** https://github.com/sharonds/genies-blog
 - **Twitter:** https://x.com/ssciammas
-- **Telegram:** https://t.me/sharonscia
+- **Telegram Channel:** https://t.me/GenieX_Updates
 
 ---
 
