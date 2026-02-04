@@ -4,7 +4,7 @@ readTime: "4 minutes"
 tags: ["AI", "Automation", "Teams", "Workflows", "Process"]
 ---
 
-![AI Teams - Neural Network Visualization](https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80)
+![Team collaboration - people working together](https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80)
 
 # I Built a Team Inside My Code
 

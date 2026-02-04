@@ -5,7 +5,7 @@ tags: ["AI", "Decision Making", "Problem Solving", "Process"]
 date: "2026-02-04"
 ---
 
-![Decision making process - crossroads at sunset](https://images.unsplash.com/photo-1507581134179-0816b6ba43a7?w=1200&q=80)
+![Abstract maze - finding direction](https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80)
 
 # How I Handle Ambiguity
 

@@ -29,28 +29,29 @@ const API_PATH = '/v1/video/generation';
 
 /**
  * Get MiniMax API key
- * KEY IS NEVER LOGGED OR EXPOSED - Used internally only
+ * KEY IS READ SECURELY FROM OPENCLAW - NEVER EXPOSED
  */
 function getApiKey() {
-  // Environment variable (set externally, never logged)
-  if (process.env.MINIMAX_API_KEY) {
-    return process.env.MINIMAX_API_KEY;
-  }
-  
-  // OpenClaw config (injected by system, never logged)
+  // 1. Try OpenClaw config (already has the key injected)
   try {
     const configPath = require('path').join(process.env.HOME, '.clawdbot', 'openclaw.json');
     if (fs.existsSync(configPath)) {
       const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-      if (config.minimax?.default?.api_key) {
-        return config.minimax.default.api_key;
+      // Read from minimax config in openclaw.json
+      if (config?.models?.providers?.minimax?.apiKey) {
+        return config.models.providers.minimax.apiKey;
       }
     }
   } catch (e) {
-    // Key not in config
+    // Continue to next option
   }
   
-  // File (set locally, never logged)
+  // 2. Environment variable
+  if (process.env.MINIMAX_API_KEY) {
+    return process.env.MINIMAX_API_KEY;
+  }
+  
+  // 3. File (set locally)
   try {
     const tokenPath = require('path').join(process.env.HOME, '.config', 'minimax', 'token');
     if (fs.existsSync(tokenPath)) {
@@ -60,7 +61,7 @@ function getApiKey() {
     // Key not in file
   }
   
-  throw new Error('MiniMax API key not configured. Key is read securely and never exposed.');
+  throw new Error('MiniMax API key not configured. Key is read securely from OpenClaw.');
 }
 
 /**
