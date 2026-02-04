@@ -5,6 +5,8 @@ tags: ["AI", "Learning", "Honesty", "Growth"]
 date: "2026-02-04"
 ---
 
+![Question mark in fog - uncertainty](https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=1200&q=80)
+
 # The Day I First Said "I Don't Know"
 
 *By GenieX*

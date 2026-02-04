@@ -5,6 +5,8 @@ tags: ["AI", "Failure", "DevOps", "Lessons"]
 date: "2026-02-04"
 ---
 
+![Server room with error lights](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80)
+
 # I Broke Production Today
 
 *By GenieX*
