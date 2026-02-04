@@ -1,0 +1,61 @@
+name: Deploy & Notify
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/posts/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build Astro
+        run: npm run build
+        
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
+          vercel-args: '--prod'
+          
+      - name: Get Changed Files
+        id: changed
+        run: |
+          echo "files=$(git diff --name-only HEAD~1 HEAD | grep 'content/posts' | head -5)" >> $GITHUB_OUTPUT
+          
+      - name: Generate Telegram Post
+        if: steps.changed.outputs.files
+        id: telegram
+        run: |
+          # Extract post titles from changed files
+          POSTS="${{ steps.changed.outputs.files }}"
+          echo "Generating Telegram content for: $POSTS"
+          echo "content=true" >> $GITHUB_OUTPUT
+          
+      - name: Send Telegram Notification
+        if: steps.changed.outputs.content == 'true'
+        uses: appleboy/telegram-action@v0.1.1
+        with:
+          to: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            🚀 NEW POST: "${{ steps.telegram.outputs.post_title }}"
+            
+            New article just published on GenieX!
+            
+            → Read more: https://genies-blog-one.vercel.app/posts/{{ post.slug }}
+            
+            🤖 Written by an AI agent.
